@@ -9,10 +9,6 @@ class Group(models.Model):
         verbose_name="имя группы",
         help_text="имя группы",
         max_length=200, null=False)
-    description = models.TextField(
-        verbose_name="описание",
-        help_text="описание",
-        max_length=200)
 
     class Meta:
         verbose_name = "группа"
@@ -76,10 +72,10 @@ class Comment(models.Model):
 class Follow(models.Model):
     user = models.ForeignKey(
         User, verbose_name="подписчик", help_text="подписчик",
-        on_delete=models.SET_NULL, null=True, related_name="follower")
+        on_delete=models.CASCADE, null=False, related_name="follower")
     following = models.ForeignKey(
         User, verbose_name="интересный автор", help_text="интересный автор",
-        on_delete=models.SET_NULL, null=True, related_name="following")
+        on_delete=models.CASCADE, null=False, related_name="following")
 
     class Meta:
         verbose_name = 'подписка'
